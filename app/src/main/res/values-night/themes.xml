@@ -13,4 +13,11 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="Theme.TheMovies.Splash" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/facebookBlue</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/movies</item>
+
+        <item name="postSplashScreenTheme">@style/Theme.TheMovies</item>
+    </style>
 </resources>

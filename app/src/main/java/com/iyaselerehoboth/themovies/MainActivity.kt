@@ -7,6 +7,7 @@ import androidx.activity.viewModels
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
@@ -28,12 +29,14 @@ class MainActivity : AppCompatActivity() {
         val splashScreen = installSplashScreen()
 
         binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        binding.tvHeading.text = "List of Discovered movies"
+        binding.tvHeading.text = "List of discovered movies"
 
         val adapter = MovieListAdapter()
         binding.rcvMovies.adapter = adapter
         binding.rcvMovies.layoutManager = LinearLayoutManager(this)
+        binding.rcvMovies.addItemDecoration(DividerItemDecoration(this, LinearLayoutManager.VERTICAL))
 
         val getDiscoverMovies: WorkRequest =
             OneTimeWorkRequestBuilder<DiscoverMoviesWorker>()

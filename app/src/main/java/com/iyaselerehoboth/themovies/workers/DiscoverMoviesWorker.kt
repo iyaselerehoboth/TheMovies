@@ -19,8 +19,9 @@ class DiscoverMoviesWorker(context: Context, parameters: WorkerParameters): Coro
 
         return try{
             val response = tmdbApi.discoverMovies("a37d9263daa754a92b399b84ed002f7d")
-            if(response != null){
-                movieRepository.insert(response.results)
+
+            if(response != null && response.isSuccessful){
+                movieRepository.insert(response.body()!!.results)
                 Result.success()
             } else {
                 Log.d("CHECK", "Response was null")
